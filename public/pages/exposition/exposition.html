@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ENEDIART</title>
+        <style>
+            .box_muanza{
+                border : 0px solid rgba(20,20,20, 0.5); 
+                display: none;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            .color_muanza{
+                color : rgba(190,190,190, 1); 
+            }
+
+            #expositions{
+                color : rgba(190,190,190, 1) !important;
+            }
+
+            .background-image {
+                position: relative;
+                left: 0;
+                right: 0;
+                z-index: -1;
+
+                display: block;
+                width: 100vw;
+                min-height: 100vh;
+
+                -webkit-filter: blur(20px);
+                -moz-filter: blur(20px);
+                -o-filter: blur(20px);
+                -ms-filter: blur(20px);
+                filter: blur(20px);
+            }
+
+            .content {
+                margin-top:-100vh;
+                padding-top: 5vh;
+                padding-bottom:  5vh;
+                position: relative;
+                z-index: 0;
+                left: 0;
+                right: 0;
+                background-color: rgba(0,0,0,0.8);
+                color: #fff;
+                width: 100vw;
+                min-height: 100vh;
+            }
+            .capitalize{
+                text-transform : capitalize
+            }
+        </style>
+
+    </head>
+    <body >
+        <div  ng-controller="ExpositionController as expositionList">
+
+            <div style="margin-top: -60px; width: 100%">
+                <div class="background-image" style="z-index: -2" ng-style="{'background-image':'url('+expositionList.exposition.photo+')'}">
+
+                </div>
+                <div class="content">
+                    <div class="padding20" style="padding-top: 80px; min-height: 100vh; padding-right: 60px;">
+
+                        <div class="row" style="padding-top: 0px;">
+                            <div class="col-sm-6" style="">
+                                <h1 class="africa">
+                                    {{expositionList.exposition.nom}}
+
+                                </h1>
+                                <p class="lead" style="margin-top: -10px;">
+                                    {{expositionList.exposition.lieu}},
+                                    {{expositionList.exposition.pays}}
+                                </p>
+                                <p class="lead capitalize africa" style="margin-top: -10px;">
+                                    {{expositionList.dateDebut}},
+                                    {{expositionList.dateFin}}
+                                </p>
+                                <p class="lead" style="color: #ccc">
+                                    {{expositionList.exposition.description ? expositionList.exposition.description : "Aucune description"}}
+                                </p>
+                            </div>
+                            <div class="col-sm-6" style="padding-top: 20px;">
+                                <div style=" border-radius: 0px ; border: 10px solid #eee ; min-height: 20vh; max-height: 100vh; overflow : hidden">
+                                    <img style="min-width: 100%; min-height: 20vh; max-height: 40vh;" ng-src="{{expositionList.exposition.photo}}" alt=""/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width: 100vw; background-color: #ddd">
+                    <div style="padding: 20px; padding-left: 20px; padding-right: 60px; padding-top: 60px;">
+                        <h1 class="africa">
+                            Regardez aussi ces expositions
+                        </h1>
+                        <div class="row" style="padding-top: 20px;">
+                            <div ng-repeat="expo in expositionList.expositions" class="col-sm-4" style="padding-right: 10px; padding-top: 20px;">
+                                <div class="ombre" style="cursor: pointer; height: 35vh; border: 1px solid #eee; overflow: hidden">
+                                    <div style="height: 35vh; background-attachment: fixed;" ng-style="{'background-image':'url('+expo.photo+')'}">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height: 10vmin">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            $(document).ready(function () {
+
+                window.scrollTo(0, 0);
+
+                var nav_zindex = $("nav").css("z-index");
+                console.log("nav_zindex : " + nav_zindex);
+
+                $("nav").css("background-color", "rgba(0,0,0,0.1)");
+                $("#basdepage").css("padding-top", "120px");
+                console.log("basde page : " + $("#basdepage").css("padding-top"));
+
+                console.log("La page exposition a été chargée");
+                var nbexpositions = Math.floor(Math.random() * 14) + 1;
+                console.log("nbexpositions" + nbexpositions);
+                $('#hautdepage').hide(500, function () {
+
+                });
+                $('.box_muanza').on('click', function () {
+                    console.log("Vous avez cliqué !");
+                    window.location.href = "#!exposition";
+                })
+
+            })
+        </script>
+    </body> 
+</html>
+

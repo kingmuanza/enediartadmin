@@ -1,0 +1,95 @@
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"><link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu+Condensed" />
+        <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light|Thasadith" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+        <title>ENEDIART</title>
+        <link href="resources/css/enediart.css" rel="stylesheet" type="text/css"/>
+        <style>
+            .flou{
+                filter : blur(5px);
+            }
+            #muanza {
+                transform: rotate(0deg);
+            }
+            .recherche_input{
+                border: none!important;
+                background: none!important;
+                font-size: 1.5em;
+                border-bottom: 1px solid #777!important;
+                width: 95%;
+                color:white;
+                padding-left: 10px; 
+            }
+        </style>
+
+    </head>
+
+    <body style="width: 100vw; min-height: 100vh; overflow-x: hidden; background-size: cover; background-image: url('https://firebasestorage.googleapis.com/v0/b/coworking-muanza.appspot.com/o/3.jfif?alt=media&token=88af0b2b-64a2-4066-b9bd-0cb652b990a7')">
+
+        <div ng-controller="ConnexionAdminController as controller" class="grid" style="width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.9)">
+            <div class="row">
+                <div class="col-7" style="padding-top: 15vmin">
+                    <div class="row">
+                        <div class="col-2">
+
+                        </div>
+                        <div class="col-8">
+                            <h1 id="titre_page" class="display-4 africa" style="color: #fff; cursor: pointer!important;">
+                                <b class="text-success" style="font-weight: 600">CONNEXION</b>
+                                <sup id="loaderProd" style="display: none" class="spinner-border text-white" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </sup>
+                            </h1>
+
+
+                            <p id="indication" class="lead" style="font-size: 1.5em; color: #fcfcfc;margin-top: -10px; margin-bottom: 20px;"> 
+                                Veuillez vous connecter pour accéder à la partie administration
+                            </p>
+                            <div>
+                                <div>
+                                    <input ng-model="controller.login" type="email" name="login" class="recherche_input africa"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Login">
+
+                                </div>
+                                <div style="padding-top: 10px">
+                                    <input ng-model="controller.password" type="password" name="passe" class="recherche_input africa"  id="exampleInputPassword1" placeholder="Mot de passe">
+                                </div>
+                                <div style="padding-top: 30px;">
+                                    <button ng-click="controller.connexion(controller.login, controller.password)" id="connexion" class="btn btn-success" type="button">
+                                        Connexion
+                                    </button>
+                                    <a href="inscription.html" class="btn btn-light">S'enregistrer</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-5" style="border-right: 1px solid #222;  background-color: rgba(0,0,0,1);height: 100vh;padding-top: 10vmin">
+                    <img style="width: 90%" src="https://firebasestorage.googleapis.com/v0/b/coworking-muanza.appspot.com/o/logonb.PNG?alt=media&token=815b7364-7dc7-45f1-8791-617274612a91">
+
+                </div>
+
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('#bar_nav').css("display", "none");
+                $('#basdepage').css("display", "none");
+                $('#connexion').on("click", function (e) {
+                    e.preventDefault();
+                    $(this).prop("disabled", true);
+                    $(this).html(
+                            `<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Connexion...`
+                            );
+                    $("#loaderProd").css("display", "inline-block");
+
+                });
+            });
+        </script>
+
+    </body>
+</html>

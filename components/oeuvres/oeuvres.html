@@ -1,0 +1,20 @@
+<div class="row" style="padding-top: 20px;">
+    <div ng-repeat="oeu in $ctrl.liste" class="col-lg-3" style="padding-right: 10px; margin-bottom: 20px">
+        <div ng-click="$ctrl.ouvrir(oeu)" class="ombre" style="cursor: pointer; height: 35vh; border: 1px solid #eee; overflow: hidden">
+            <div onmouseover="montrerInfos(this)" onmouseout="cacherInfos(this)" style="height: 35vh; background-size: cover;" ng-style="{'background-image':'url('+oeu.src+')'}">
+                <div class='text-white padding20 noir_transparent' style="height: 35vh; display: none">
+                    <h3 class='africa'>
+                        {{oeu.nom}}
+                    </h3>
+                    <p class='lead line5'>
+                        <a class='lien_gris lien_artiste' href='#!/artiste/{{oeu.artiste.id}}'>
+                            {{oeu.artiste.nom}}
+                            {{oeu.artiste.prenom}}
+                        </a>
+                        , {{oeu.artiste.pays}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

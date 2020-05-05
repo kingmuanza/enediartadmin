@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ENEDIART</title>
+        <style>
+            .box_muanza{
+                border : 0px solid rgba(20,20,20, 0.5); 
+                display: none;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            .color_muanza{
+                color : rgba(190,190,190, 1); 
+            }
+
+            #artistes{
+                color : rgba(190,190,190, 1) !important;
+            }
+            
+            @media only screen and (max-width: 500px) {
+                
+                #titre_page {
+                    font-size : 2.5em!important;
+                }
+                
+                #filtrage {
+                    display: none;
+                }
+                
+            }
+        </style>
+
+    </head>
+    <body style="background-color: #fafafa">
+        <div ng-controller="ArtistesController as artistesList" style="min-height: 100vh;  width: 100% ; background-color: #cacaca">
+            <div style="border-bottom: 1px solid rgba(45,255,32, 1); height: 50vh; background: url('https://firebasestorage.googleapis.com/v0/b/coworking-muanza.appspot.com/o/wallbw2.jpg?alt=media&token=d7d359e6-3917-4cee-8ec2-261d08a3409f'); background-repeat: no-repeat; background-attachment: fixed;" class="">
+                <div style="height: 50vh; background-color: rgba(0,0,0, 0.85)">
+
+                </div>
+            </div>
+
+            <div style="padding-bottom: 40px; margin-top: -50vh;">
+                <div class="" style="padding: 10vw; padding-top: 20px; ">
+                    <div style="padding-left: 5px;">
+                        
+                    <h1 id="titre_page" class="display-4 africa" style="color: #fff; cursor: pointer!important;">
+                        <b ng-click="artistesList.creerArtiste()">Liste des Artistes</b>
+                    </h1>
+                    <p class="lead" style="color: #fcfcfc;margin-top: -10px;"> 
+                        Découvrez tous les artistes disponibles sur notre site
+                    </p>
+                    </div>
+                    <div id="filtrage" class="row">
+                        <div class="col-sm-4">
+                            <div style="padding-left:10px; padding-top: 10px; padding-bottom: 10px;">
+                                <input ng-model="motsCles" ng-change="artistesList.rechercherArtistes('','',0)" type="text" class="recherche_input africa" placeholder="Rechercher par mots clés">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="padding-top: 10px; padding-bottom: 10px;">
+                                <input ng-model="note" min="1" max="5" ng-change="artistesList.rechercherArtistes('','',0)" type="number" class="recherche_input africa" placeholder="Note minimale">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="padding-top: 10px; padding-bottom: 10px;">
+                                <input ng-model="prix" ng-change="artistesList.rechercherArtistes('','',0)" type="number" class="recherche_input africa" placeholder="Pays">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div style=" padding: 10px; padding-top: 10px;">
+                        <div class="row">
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 10px;">
+                                <div class="h50 box_muanza" >
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carte_artiste" style="position: fixed; top:0; display: none; padding: 10px;">
+            <div style="z-index: -1; transform: rotate(45deg); width: 10px; height: 10px; background-color: #000; border-left: 1px solid #aaa; border-top: 1px solid #aaa; margin-left: 140px;">
+
+            </div>
+            <div class="contenu" style="z-index: 1 ; margin-top: -5px;">
+                <div style="width: 100px; height: 98px; background-color: #777; display: inline-block; overflow: hidden">
+                    <img style="height: 100px;" src="https://firebasestorage.googleapis.com/v0/b/coworking-muanza.appspot.com/o/muanza.jpg?alt=media&token=6b22a211-6223-475d-a6f3-561e84fc8ec3" alt=""/>
+                </div>
+                <div style="width: 190px; height: 98px;  display: inline-block; margin-top: 0px; padding: 5px;vertical-align: top;">
+                    <p class='description lead line5 text-white fontsize11'>
+                        Muanza Kangudie, Cameroun, 23 artistes 
+                    </p>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            $(document).ready(function () {
+                
+                window.scrollTo(0, 0);
+                
+                console.log("accounting");
+                
+                $("nav").css("background-color", "#333");
+                $("#basdepage").css("padding-top", "60px");
+                console.log("basde page : " + $("#basdepage").css("padding-top"));
+                
+                console.log("La page artiste a été chargée");
+                var nbartistes = Math.floor(Math.random() * 14) + 1;
+                console.log("nbartistes" + nbartistes);
+                $('#hautdepage').hide(500, function () {
+                    //afficherLesBlocAvecElegance(0, nbartistes);
+                });
+                $('.box_muanza').on('click', function () {
+                    console.log("Vous avez cliqué sur une artiste");
+                    var data = $(this).data("artiste");
+                    console.log(data);
+                    console.log(data.id);
+                    window.location.href = "#!artiste/view/"+data.id;
+                })
+                $('.box_muanza').on('mouseenter', function () {
+                    //console.log("Vous êtes dessus !");
+                    var chargement = $(this).find(".chargement")
+                    $(this).find("div").css("display", "block");
+                    $('a.lien_gris').on('mouseover', function () {
+                        
+                        chargement.removeClass("cacher");
+                        
+                        var x = event.clientX;     // Get the horizontal coordinate
+                        var y = event.clientY;     // Get the vertical coordinate
+                        var coor = "X coords: " + x + ", Y coords: " + y;
+                        var data = $(this).data();
+                        var artiste = data.artiste;
+                        console.log(artiste)
+                        var html = "<p class='lead line5 text-white fontsize11'>"
+                                + artiste.nom + " "
+                                + artiste.prenom
+                                + ", "
+                                + artiste.pays
+                                + "</p>"
+                        $('.carte_artiste').css('top', (y + 30) + 'px');
+                        $('.carte_artiste').css('left', (x - 150) + 'px');
+                        $('.carte_artiste').css('display', 'inline-block');
+                        $('.carte_artiste').find(".description").html(html);
+                        $('.carte_artiste').find("img").attr("src", data.artiste.photo);
+                    })
+                    $('a.lien_gris').on('mouseleave', function () {
+                        chargement.addClass("cacher");
+                        $('.carte_artiste').css('display', 'none');
+                    })
+                })
+                $('.box_muanza').on('mouseleave', function () {
+                    //console.log("Vous êtes dessus !");
+                    $(this).find("div").css("display", "none");
+                })
+                $('a.lien_gris').on('mouseover', function () {
+                    console.log($(this));
+                    $(this).append("<i class='chargement fas fa-spinner'></i>");
+                })
+
+            })
+
+        </script>
+    </body> 
+</html>
+

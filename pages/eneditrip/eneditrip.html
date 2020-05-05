@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ENEDIART</title>
+        <style>
+            .box_muanza{
+                border : 0px solid rgba(20,20,20, 0.5); 
+                display: none;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            .color_muanza{
+                color : rgba(190,190,190, 1); 
+            }
+
+            #nom_utilisateur{
+                color : rgba(190,190,190, 1) !important;
+            }
+
+            .hauteur{
+                height: 45vh;
+                max-height: 50vw;
+            }
+
+            .tr:hover{
+                background-color: #ddd;
+            }
+            .miniature img:hover{
+                transform: scale(0.95);
+            }
+
+            #blocDeImage img:hover{
+
+            }
+
+            .supprimer:hover{
+                color:#000!important;
+            }
+
+            .nom_artiste:hover{
+                font-weight: bold;
+            }
+
+            #eneditrip{
+                color : rgba(190,190,190, 1) !important;
+            }
+
+        </style>
+
+    </head>
+    <body style="background-color: #fff">
+        <div ng-controller="EneditripController as controller" style="min-height: 200vh; overflow: hidden">
+            <div style="width: 100%; min-height: 200vh">
+                <div class="row">
+
+                    <div class="col-12" style="background-color: rgba(0,0,0,1); padding: 0vmin;">
+                        <div style="min-height: 200vh; width: 100%;">
+                            <div id="blocDeImage" style="border-radius: 0px ; border: 0px solid #eee ; min-height: 80vh; overflow : hidden">
+                                <img style="width: 100%" ng-src="{{controller.oeuvre.src}}" alt=""/>
+                            </div>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 100%; padding: 5vmin; position: absolute; top:5vh">
+                <div id="trip" style="width: 100%; text-align: center">
+                    <div style="padding-top: 20px">
+                        <a ng-click="controller.jaime()" class="btn btn-lg btn-dark" style="cursor: pointer!important;">
+                            <i class="fas fa-heart" style="color:red"></i>
+                        </a>
+                        <a ng-click="controller.jaimePas()" class="btn btn-lg btn-dark" style="cursor: pointer!important;">
+                            <span style="padding-left: 10px; color: #aaa">
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            $(document).ready(function () {
+
+                $("nav").css("background-color", "#333");
+                $("nav").css("background-color", "#333");
+                $("#basdepage").css("padding-top", "60px");
+                console.log("basde page : " + $("#basdepage").css("padding-top"));
+
+                console.log("accounting");
+
+                console.log("La page oeuvre a été chargée");
+                var nboeuvres = Math.floor(Math.random() * 14) + 1;
+                console.log("nboeuvres" + nboeuvres);
+                $('#hautdepage').hide(500, function () {
+                    //afficherLesBlocAvecElegance(0, nboeuvres);
+                });
+
+
+            })
+
+        </script>
+    </body> 
+</html>
+

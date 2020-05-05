@@ -1,0 +1,355 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ENEDIART</title>
+        <style>
+            .box_muanza{
+                border : 0px solid rgba(20,20,20, 0.5); 
+                display: none;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            .color_muanza{
+                color : rgba(190,190,190, 1); 
+            }
+
+            #artistes{
+                color : rgba(190,190,190, 1) !important;
+            }
+            #back_blur{
+                z-index: 0;   
+            }
+            .flou{
+
+            }
+            .image_zoom{
+                transform: scale(1.02);
+            }
+            .image_zoom:hover{
+                transform: scale(1);
+            }
+            .recherche_input{
+                border: none!important;
+                background: none!important;
+                font-size: 1.5em;
+                border-bottom: 1px solid #777!important;
+                width: 95%;
+                color:#777;
+            }
+            select.recherche_input{
+                padding-top: 10px;
+                color:white;
+            }
+            select.recherche_input:focus{
+                height: 300%;
+            }
+            .recherche_input:focus {
+                outline: none!important;
+                border: none!important;
+                background: none!important;
+                border-bottom: 1px solid #777!important;
+                width: 95%;
+            }
+
+            .liste_oeuvres {
+                padding-top: 20vh; 
+            }
+
+            #block_bas {
+                margin-top: -20vh;
+            }
+
+            @media only screen and (max-width: 500px) {
+
+                #titre_page {
+                    font-size : 2.5em!important;
+                }
+
+                #filtrage {
+                    display: none;
+                }
+
+                .liste_oeuvres {
+                    padding-top: 2vh; 
+                }
+                #block_bas {
+                    margin-top: -25vh;
+                }
+
+            }
+        </style>
+
+    </head>
+    <body style="background-color: #fafafa">
+        <div ng-controller="ArtisteController as controller" style="z-index: -1; margin-top: 0px; min-height: 100vh;  width: 100% ; background-color: #fafafa">
+
+            <div ng-style="{'background-image':'url('+controller.background+')'}" style="background-position: center bottom; background-size:100%;  border-bottom: 1px solid rgba(45,255,32, 1); height: 30vh; background-repeat: no-repeat; background-attachment: fixed;" class="">
+                <div style="height: 30vh; background-color: rgba(0,0,0, 0.85)">
+
+                </div>
+            </div>
+
+            <div id="block_bas" style="padding-bottom: 40px; ">
+                <div class="" style="padding: 3vw; padding-top: 0vh; ">
+                    <div class="row">
+                        <div class="col-sm-3" style="padding-left: 5vw; padding-right: 5vw;">
+                            <div style="position: relative;">
+                                <div class="ombre" style="background-color: #eee ; width: 100%; min-height: 20vh; max-height: 40vh; overflow: hidden">
+                                    <img style="width: 100%" class="image_zoom" ng-src="{{controller.artiste.photo}}" alt=""/>
+                                </div>
+                                <p class="lead africa" style="padding-top: 15px;">
+                                    {{controller.artiste.nom}} {{controller.artiste.prenom}},
+                                    {{controller.artiste.pays}}
+                                </p>
+                                <p id="notation" class="lead africa" style="margin-top: -15px;">
+                                <notation artiste="controller.artiste"></notation>
+                                </p>
+
+                                <p style="display: none">
+                                    <a href="#!artiste/edition/{{controller.artiste.id}}">
+                                        Modifier
+
+                                    </a>
+                                </p>
+                            </div>
+
+
+                        </div>
+                        <div id="liste_oeuvres" class="col-sm-9" style="">
+                            <div id="filtrage" class="row">
+                                <div class="col-sm-6">
+                                    <div style="padding-left:10px; padding-top: 10px; padding-bottom: 10px;">
+                                        <input ng-model="motsCles" ng-change="controller.rechercherOeuvres('', '', 0)" type="text" class="recherche_input africa" placeholder="Rechercher par mots clés">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div style="padding-top: 10px; padding-bottom: 10px;">
+                                        <input ng-model="note" min="1" max="5" ng-change="controller.rechercherOeuvres('', '', 0)" type="number" class="recherche_input africa" placeholder="Note minimale">
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div style="padding-top: 10px; padding-bottom: 10px;">
+                                        <input ng-model="prix" ng-change="controller.rechercherOeuvres('', '', 0)" type="number" class="recherche_input africa" placeholder="Prix maximal">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div style=" padding: 10px; padding-top: 10px;">
+                                <div class="row">
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style=" padding: 10px; padding-top: 10px;">
+                                <div class="row">
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style=" padding: 10px; padding-top: 10px;">
+                                <div class="row">
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style=" padding: 10px; padding-top: 10px;">
+                                <div class="row">
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style=" padding: 10px; padding-top: 10px;">
+                                <div class="row">
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style=" padding: 10px; padding-top: 10px;">
+                                <div class="row">
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style=" padding: 10px; padding-top: 10px;">
+                                <div class="row">
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="padding: 10px;">
+                                        <div class="h50 box_muanza" >
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="width: 100vw; background-color: #ddd">
+                <div style="padding: 20px; padding-left: 5vmin; padding-right: 8vmin; padding-top: 60px;">
+                    <h1 class="africa">
+                        Regardez aussi ces artistes
+                    </h1>
+
+                    <div class="row" style="padding-top: 20px;">
+
+                        <div ng-repeat="a in controller.artistes" class="col-3" style="padding-right: 10px;">
+                            <div ng-click="controller.ouvrir(a)" class="ombre" style="cursor: pointer; height: 35vh; border: 1px solid #eee; overflow: hidden">
+                                <div onmouseover="montrerInfos(this)" onmouseout="cacherInfos(this)" style="height: 35vh; background-size: cover;" ng-style="{'background-image':'url('+a.photo+')'}">
+                                    <div class='text-white padding20 noir_transparent' style="height: 35vh; display: none">
+                                        <h3 class='africa'>
+                                            {{a.nom}}
+                                            {{a.prenom}}, 
+                                            {{a.pays}} 
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 10vmin">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            function montrerInfos(element) {
+                console.log("Vous êtes dessus !");
+                var div = element.childNodes;
+                console.log(div)
+                div[1].style.display = "block";
+            }
+            function cacherInfos(element) {
+                console.log("Vous êtes sorti !");
+                var div = element.childNodes;
+                console.log(div)
+                div[1].style.display = "none";
+            }
+
+        </script>
+        <script>
+
+            $(document).ready(function () {
+
+                window.scrollTo(0, 0);
+                console.log("accounting");
+                $("nav").css("background-color", "#333");
+
+
+                console.log("La page artiste a été chargée");
+                var nbartistes = Math.floor(Math.random() * 14) + 1;
+                console.log("nbartistes" + nbartistes);
+                $('#hautdepage').hide(500, function () {
+                    //afficherLesBlocAvecElegance(0, nbartistes);
+                });
+                $('.box_muanza').on('click', function () {
+                    console.log("Vous avez cliqué sur une artiste");
+                    var data = $(this).data("oeuvre");
+                    console.log(data);
+                    console.log(data.id);
+                    window.location.href = "#!oeuvre/" + data.id;
+                })
+                $('.box_muanza').on('mouseenter', function () {
+                    //console.log("Vous êtes dessus !");
+                    var chargement = $(this).find(".chargement")
+                    $(this).find("div").css("display", "block");
+                    $('a.lien_gris').on('mouseover', function () {
+
+                        chargement.removeClass("cacher");
+
+                        var x = event.clientX;     // Get the horizontal coordinate
+                        var y = event.clientY;     // Get the vertical coordinate
+                        var coor = "X coords: " + x + ", Y coords: " + y;
+                        var data = $(this).data();
+                        var artiste = data.artiste;
+                        console.log(artiste)
+                        var html = "<p class='lead line5 text-white fontsize11'>"
+                                + artiste.nom + " "
+                                + artiste.prenom
+                                + ", "
+                                + artiste.pays
+                                + "</p>"
+                        $('.carte_artiste').css('top', (y + 30) + 'px');
+                        $('.carte_artiste').css('left', (x - 150) + 'px');
+                        $('.carte_artiste').css('display', 'inline-block');
+                        $('.carte_artiste').find(".description").html(html);
+                        $('.carte_artiste').find("img").attr("src", data.artiste.photo);
+                    })
+                    $('a.lien_gris').on('mouseleave', function () {
+                        chargement.addClass("cacher");
+                        $('.carte_artiste').css('display', 'none');
+                    })
+                })
+                $('.box_muanza').on('mouseleave', function () {
+                    //console.log("Vous êtes dessus !");
+                    $(this).find("div").css("display", "none");
+                })
+                $('a.lien_gris').on('mouseover', function () {
+                    console.log($(this));
+                    $(this).append("<i class='chargement fas fa-spinner'></i>");
+                })
+
+            })
+
+        </script>
+    </body> 
+</html>
+

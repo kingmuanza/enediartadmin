@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ENEDIART</title>
+        <style>
+            .box_muanza{
+                border : 0px solid rgba(20,20,20, 0.5); 
+                display: none;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            .color_muanza{
+                color : rgba(190,190,190, 1); 
+            }
+
+            #oeuvres{
+                color : rgba(190,190,190, 1) !important;
+            }
+
+            .background-image {
+                position: relative;
+                left: 0;
+                right: 0;
+                z-index: -1;
+
+                display: block;
+                width: 100vw;
+                min-height: 100vh;
+
+                -webkit-filter: blur(20px);
+                -moz-filter: blur(20px);
+                -o-filter: blur(20px);
+                -ms-filter: blur(20px);
+                filter: blur(20px);
+            }
+
+            .content {
+                margin-top:-100vh;
+                padding-left: 5vmin;
+                padding-right: 5vmin;
+                padding-top: 5vh;
+                padding-bottom: 5vh;
+                position: relative;
+                z-index: 0;
+                left: 0;
+                right: 0;
+                background-color: rgba(0,0,0,0.8);
+                color: #fff;
+                width: 100vw;
+                min-height: 100vh;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div ng-controller="OeuvreController as controller">
+
+            <div ng-if="controller.oeuvre"  style="margin-top: -60px;  width: 100%" >
+                <div class="background-image" style="z-index: -2" ng-style="{'background-image':'url('+controller.oeuvre.src+')'}">
+
+                </div>
+                <div class="content">
+                    <div class="padding20" style="min-height: 100vh; padding-right: 30px;">
+
+                        <div class="row" style="padding-top: 60px;">
+                            <div class="col-sm-7" style="margin-bottom: 20px; ">
+                                <div style="border-radius: 0px ; border: 10px solid #eee ; min-height: 40vmin; overflow-x : hidden">
+                                    <img style="width: 100%;" ng-src="{{controller.oeuvre.src}}" alt=""/>
+                                </div>
+                            </div>
+                            <div class="col-sm-5" style="">
+                                <h1 class="africa">
+                                    {{controller.oeuvre.nom}}
+
+                                </h1>
+                                <p ng-click="controller.voirArtiste(controller.oeuvre.artiste)" class="lead" style="margin-top: -10px; cursor: pointer">
+                                    {{controller.oeuvre.artiste.nom}}
+                                    {{controller.oeuvre.artiste.prenom}},
+                                    {{controller.oeuvre.artiste.pays}}
+                                </p>
+                                <p style="margin-top: -10px;">
+                                    <notation artiste="controller.oeuvre"></notation>
+                                </p>
+                                
+                                <p class="lead" style="color: #ccc">
+                                    {{controller.oeuvre.description ? controller.oeuvre.description:"Aucune description"}}
+                                </p>
+                                <h1 class="africa" style="padding-top: 0px;">
+                                    {{controller.prixEtDevise(controller.oeuvre.prix)}}
+                                </h1>
+                                <p style="padding-top: 10px" ng-if="!controller.estPresent">
+                                    <!--                                    <a href="" class="btn btn-lg btn-outline-secondary">Agrandir</a>-->
+                                    <a ng-click="controller.ajouterAuPanier()" class="btn btn-lg btn-outline-secondary" style="cursor: pointer!important;">
+                                        <i class="fas fa-shopping-cart"></i> 
+                                        <span style="padding-left: 10px;">Ajouter au Panier</span>
+
+                                    </a>
+                                </p>
+                                <p style="padding-top: 10px" ng-if="controller.estPresent">
+                                    <!--                                    <a href="" class="btn btn-lg btn-outline-secondary">Agrandir</a>-->
+                                    <a ng-click="controller.retirerOeuvre()" class="btn btn-lg btn-outline-secondary" style="cursor: pointer!important;">
+                                        <i class="fas fa-shopping-cart"></i> 
+                                        <span style="padding-left: 10px;">Retirer du Panier</span>
+
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div style="width: 100vw; background-color: #ddd">
+                <div style="padding: 20px; padding-left: 5vmin; padding-right: 8vmin; padding-top: 60px;">
+                    <h1 class="africa">
+                        Regardez aussi ces oeuvres
+                    </h1>
+                    <oeuvres liste="controller.oeuvres"></oeuvres>
+
+                    <div style="height: 10vmin">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            function montrerInfos(element) {
+                console.log("Vous êtes dessus !");
+                var div = element.childNodes;
+                console.log(div)
+                div[1].style.display = "block";
+            }
+            function cacherInfos(element) {
+                console.log("Vous êtes sorti !");
+                var div = element.childNodes;
+                console.log(div)
+                div[1].style.display = "none";
+            }
+
+
+            $(document).ready(function () {
+
+                console.log("La page oeuvre est prête !!! ")
+
+                $(document).scrollTop();
+                $(window).scrollTop();
+
+                var nav_zindex = $("nav").css("z-index");
+                console.log("nav_zindex : " + nav_zindex);
+
+                $("nav").css("background-color", "rgba(0,0,0,0.1)");
+                $("#basdepage").css("padding-top", "100px");
+                console.log("basde page : " + $("#basdepage").css("padding-top"));
+
+                console.log("La page oeuvre a été chargée");
+                var nboeuvres = Math.floor(Math.random() * 14) + 1;
+                console.log("nboeuvres" + nboeuvres);
+                $('#hautdepage').hide(500, function () {
+
+                });
+                $('.box_muanza').on('click', function () {
+                    console.log("Vous avez cliqué !");
+                    window.location.href = "#!oeuvre";
+                })
+
+            })
+        </script>
+    </body> 
+</html>
+

@@ -1,0 +1,139 @@
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ENEDIART</title>
+        <style>
+            ::placeholder {
+                color: #000 !important;
+            }
+
+            .nopadding {
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .komobled {
+                padding-top: 10px; 
+                margin-top: -20vh;
+            }
+            .komobled .inner{
+                margin-bottom: 20px
+            }
+
+            .lien_muanza {
+                cursor: pointer;
+            }
+            .lien_muanza:hover{
+                opacity: 0.7;
+            }
+
+            @media only screen and (max-width: 500px) {
+                .komobled {
+                    padding: 0 !important;
+                    margin: 0 !important;
+                }
+
+                .komobled .inner{
+                    padding: 20px;
+                }
+
+                .lien_muanza {
+                    text-align: center;
+                }
+            }
+
+
+
+        </style>
+
+    </head>
+    <body style="background-color: #fff">
+        <div ng-controller="RechercherController as controller">
+            <div style="background-color: #eee ;width: 100%; min-height: 15vh; padding: 40px; padding-top: 40px;">
+                <div class="row" style="padding-top: 0px;">
+                    <div class="col-sm-12">
+                        <h1 class="africa" style="">
+                            <b style="font-size: 1.5em">Rechercher</b>
+                        </h1>
+                        <div class="form-group">
+                            <input ng-change="controller.rechercher()" placeholder="Entrez votre recherche ici !" ng-model="controller.libelle" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 100%; min-height: 15vh; padding: 40px; ">
+                <h1>
+                    Oeuvres
+                </h1>
+                <div class="row">
+                    <div class="col-lg-6" style="margin-bottom: 20px; " ng-repeat="oeu in controller.oeuvres track by $index">
+                        <oeuvre element="oeu"></oeuvre>
+                    </div>
+                </div>
+                <h1 style="margin-top: 20px;">
+                    Artistes
+                </h1>
+                <div class="row">  
+                    <div ng-repeat="a in controller.artistes" class="col-lg-6" style="margin-bottom: 20px; padding-right: 10px;">
+                        <div ng-click="controller.ouvrirArtiste(a)" class="ombre" style="cursor: pointer; height: 60vh; border: 1px solid #eee; overflow: hidden">
+                            <div onmouseover="montrerInfos(this)" onmouseout="cacherInfos(this)" style="height: 60vh; background-size: cover;" ng-style="{'background-image':'url('+a.photo+')'}">
+                                <div class='text-white padding20 noir_transparent' style="height: 60vh; display: none">
+                                    <h3 class='africa'>
+                                        {{a.nom}}
+                                        {{a.prenom}}, 
+                                        {{a.pays}} 
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <script>
+
+            function montrerInfos(element) {
+                console.log("Vous êtes dessus !");
+                var div = element.childNodes;
+                console.log(div)
+                div[1].style.display = "block";
+            }
+            function cacherInfos(element) {
+                console.log("Vous êtes sorti !");
+                var div = element.childNodes;
+                console.log(div)
+                div[1].style.display = "none";
+            }
+
+            $(document).ready(function () {
+                $("nav").css("background-color", "rgba(0,0,0,0.99)");
+                $("nav").addClass("ombre");
+                window.scrollTo(0, 0);
+                document.addEventListener('scroll', function (event) {
+                    var scroll = $("#vue").scrollTop();
+                    //console.log('scrolling ');
+                    $("nav").css("background-color", "rgba(0,0,0,0.99)");
+
+                    clearTimeout($.data(this, 'scrollTimer'));
+
+                    $.data(this, 'scrollTimer', setTimeout(function () {
+                        $("nav").css("background-color", "rgba(0,0,0,0.99)");
+                        //$("nav").removeClass("ombre");
+                        //console.log("Haven't scrolled in 250ms!");
+                    }, 2000));
+                }, true);
+
+
+
+
+
+            });
+        </script>
+    </body> 
+</html>
+

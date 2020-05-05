@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ENEDIART</title>
+        <style>
+            .box_muanza{
+                border : 0px solid rgba(20,20,20, 0.5); 
+                display: none;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            .color_muanza{
+                color : rgba(190,190,190, 1); 
+            }
+
+            #nom_utilisateur{
+                color : rgba(190,190,190, 1) !important;
+            }
+
+            .hauteur{
+                height: 45vh;
+                max-height: 50vw;
+            }
+
+            .tr:hover{
+                background-color: #ddd;
+            }
+            .miniature img:hover{
+                transform: scale(0.95);
+            }
+
+            .supprimer:hover{
+                color:#000!important;
+            }
+
+            .nom_artiste:hover{
+                font-weight: bold;
+            }
+
+        </style>
+
+    </head>
+    <body style="background-color: #fff">
+        <div ng-controller="AdminController as controller">
+            <div ng-style="{'background-image':'url('+controller.backgroundImage+')'}" style="background-position: center center; background-size: 150% auto; width: 100%; height: 25vmin;">
+                
+            </div>
+            <div class="" style="width: 100%; height: 25vmin; background-color: rgba(0,0,0,0.7); padding: 5vmin; margin-top: -25vmin">
+                <h1 class="africa display-3" style="color: #fdfdfd">
+                    Administration
+                </h1>
+            </div>
+            <div style="width: 100%;">
+                <div class="row">
+                    <div class="col-8" style="border-right: 1px solid #eee; padding: 2vmin 5vmin; padding-left: 7vmin">
+                        <h1 class="africa">Liste des commandes sur le site</h1>
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Miniature</th>
+                                        <th scope="col">Oeuvre</th>
+                                        <th scope="col">Artiste</th>
+                                        <th scope="col">Montant</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="" style="cursor:pointer" ng-repeat="oeuvre in controller.panier">
+                                        <th scope="row">{{oeuvre.date.split('T')[0]}}</th>
+                                        <td>
+                                            <div class="miniature" style="width: 80px; height: 80px; overflow: hidden">
+                                                <img ng-click="controller.goToOeuvre(oeuvre)" style="min-width: 80px; max-width: 150px; max-height: 150px; min-height: 80px;" ng-src="{{oeuvre.src}}" alt=""/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{oeuvre.nom}}
+                                        </td>
+                                        <td>
+                                            <span class="nom_artiste"  ng-click="controller.goToArtiste(oeuvre)">
+
+                                                {{oeuvre.artiste.nom}}
+                                                {{oeuvre.artiste.prenom}}
+                                            </span>
+                                        </td>
+                                        <td scope="row">
+                                            <b>{{controller.format(oeuvre.prix)}} FCFA</b>
+                                        </td>
+                                        <td scope="row">
+                                            <h3 class="supprimer" ng-click="controller.supprimerOeuvre(oeuvre)" style="text-align: center; color: #777">
+                                                <i class="far fa-trash-alt"></i>
+                                            </h3>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-4" style="padding: 2vmin 5vmin ; background-color: #fafafa">
+                        <h1 class="africa">Total attendu</h1>
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Libellé</th>
+                                        <th scope="col" style="text-align: right">Montant</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Montant HT</th>
+                                        <td style="text-align: right">{{controller.format(controller.total.toFixed(2))}} FCFA</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Taxe</th>
+                                        <td style="text-align: right">{{controller.format((controller.total * controller.taxe).toFixed(2))}} FCFA</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th scope="col">Montant TTC</th>
+                                        <th scope="col" style="text-align: right">
+                                            {{controller.format((controller.total * controller.taxe + controller.total).toFixed(2))}} FCFA
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <script>
+
+            $(document).ready(function () {
+
+                window.scrollTo(0, 0);
+
+                $("nav").css("background-color", "#333");
+                $("#basdepage").css("padding-top", "60px");
+                console.log("basde page : " + $("#basdepage").css("padding-top"));
+
+                console.log("accounting");
+
+                console.log("La page oeuvre a été chargée");
+                var nboeuvres = Math.floor(Math.random() * 14) + 1;
+                console.log("nboeuvres" + nboeuvres);
+                $('#hautdepage').hide(500, function () {
+                    //afficherLesBlocAvecElegance(0, nboeuvres);
+                });
+
+
+            })
+
+        </script>
+    </body> 
+</html>
+

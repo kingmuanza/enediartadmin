@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ENEDIART</title>
+        <style>
+            .box_muanza{
+                border : 0px solid rgba(20,20,20, 0.5); 
+                display: none;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            .color_muanza{
+                color : rgba(190,190,190, 1); 
+            }
+
+            #nom_utilisateur{
+                color : rgba(190,190,190, 1) !important;
+            }
+
+            .hauteur{
+                height: 45vh;
+                max-height: 50vw;
+            }
+
+            .tr:hover{
+                background-color: #ddd;
+            }
+            .miniature img:hover{
+                transform: scale(0.95);
+            }
+
+            .supprimer:hover{
+                color:#000!important;
+            }
+
+            .nom_artiste:hover{
+                font-weight: bold;
+            }
+
+        </style>
+
+    </head>
+    <body style="background-color: #fff">
+        <div ng-controller="PaiementController as controller">
+            <div ng-style="{'background-image':'url('+controller.backgroundImage+')'}" style="background-size: cover; width: 100%; height: 25vmin;">
+
+            </div>
+            <div class="" style="width: 100%; height: 25vmin; background-color: rgba(0,0,0,0.7); padding: 5vmin; margin-top: -25vmin">
+                <h1 class="africa display-3" style="color: #fdfdfd">
+                    Paiement
+                </h1>
+            </div>
+            <div style="width: 100%;">
+                <div class="row">
+
+                    <div class="col-4" style="padding: 2vmin 7vmin ; background-color: #fafafa">
+                        <h1 class="africa">Total à payer</h1>
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Libellé</th>
+                                        <th scope="col" style="text-align: right">Montant</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Montant HT</th>
+                                        <td style="text-align: right">{{controller.format(controller.total.toFixed(2))}} FCFA</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Taxe</th>
+                                        <td style="text-align: right">{{controller.format((controller.total * controller.taxe).toFixed(2))}} FCFA</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th scope="col">Montant TTC</th>
+                                        <th scope="col" style="text-align: right">
+                                            {{controller.format((controller.total * controller.taxe + controller.total).toFixed(2))}} FCFA
+                                        </th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <p style="padding-top: 50px;">
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-8" style="padding: 2vmin 5vmin; padding-left: 7vmin">
+
+                        <h1 class="africa">Mode de paiement</h1>
+                        <div class="row">
+                            <div class="col-4">
+
+                            </div>
+                            <div class="col-4">
+                                <!-- Button trigger modal -->
+                                <button type="image" style="width : 250px; height: 100px; background-image: url('https://developer.mtn.cm/OnlineMomoWeb/console/uses/itg_img/buttons/MOMO_buy_now_VF.jpg'); background-size: 100% auto; border-width: 0px;" data-toggle="modal" data-target="#exampleModal">
+
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                Numéro de téléphone
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="formmomo" method="GET" action="https://developer.mtn.cm/OnlineMomoWeb/faces/transaction/transactionRequest.xhtml" target="_blank">
+                                <input type="hidden" name="idbouton" value="2" autocomplete="off">
+                                <input type="hidden" name="typebouton" value="PAIE" autocomplete="off">
+                                <!-- ng-value="(controller.total * controller.taxe + controller.total).toFixed(0)" -->
+                                <input class="momo mount" type="hidden" placeholder="" name="_amount" value="1000"  id="montant" autocomplete="off">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            Numéro MTN
+                                        </span>
+                                    </div>
+                                    <input class="form-control" type="text" placeholder="" name="_tel" value="678116190" autocomplete="off">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            Montant à payer
+                                        </span>
+                                    </div>
+                                    <input readonly class="form-control" type="text" placeholder="" name="_amount" ng-value="(controller.total * controller.taxe + controller.total).toFixed(0)"  id="montant" autocomplete="off">
+                                
+                                </div>
+                                <input class="momo pwd" placeholder="" name="_clP" value="Hermann*_91" autocomplete="off" type="hidden">
+                                <input type="hidden" name="_email" value="kembuysarl@gmail.com" autocomplete="off">
+                                <input type="image" id="Button_Image" src="https://developer.mtn.cm/OnlineMomoWeb/console/uses/itg_img/buttons/MOMO_buy_now_VF.jpg" style="width : 250px; height: 100px;" border="0" name="submit" alt="OnloneMomo, le réflexe sécurité pour payer en ligne" autocomplete="off">      
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            <button ng-click="controller.payer()" type="button" data-dismiss="modal" class="btn btn-warning">Confirmer la transaction</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://www.paypal.com/sdk/js?client-id=ASdOLY-g2kewWN41hyDdrKJaGkgFu_BQIqkkRHukPNRDfRbiEwKFkmsEzPTlm_uLZUIZrac_HpgYwQph">
+        </script>
+        <script>
+
+            $(document).ready(function () {
+
+                window.scrollTo(0, 0);
+
+                $("nav").css("background-color", "#333");
+                $("#basdepage").css("padding-top", "60px");
+                console.log("basde page : " + $("#basdepage").css("padding-top"));
+
+                console.log("accounting");
+
+                console.log("La page oeuvre a été chargée");
+                var nboeuvres = Math.floor(Math.random() * 14) + 1;
+                console.log("nboeuvres" + nboeuvres);
+                $('#hautdepage').hide(500, function () {
+                    //afficherLesBlocAvecElegance(0, nboeuvres);
+                });
+
+
+            })
+
+        </script>
+
+    </body> 
+</html>
+

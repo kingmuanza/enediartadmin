@@ -1,0 +1,35 @@
+<div ng-click="$ctrl.ouvrir($ctrl.element)" class="ombre" style="cursor: pointer; height: 60vh; border: 1px solid #eee; overflow: hidden">
+    <div onmouseover="montrerInfos(this)" onmouseout="cacherInfos(this)" style="height: 60vh; background-size: cover;" ng-style="{'background-image':'url('+$ctrl.element.src+')'}">
+        <div class='text-white padding20 noir_transparent' style="height: 60vh; display: none">
+            <h3 class='africa'>
+                {{$ctrl.element.nom}}
+            </h3>
+            <p class='lead line5'>
+                <a class='lien_gris lien_artiste' href='#!/artiste/{{$ctrl.element.artiste.id}}'>
+                    {{$ctrl.element.artiste.nom}}
+                    {{$ctrl.element.artiste.prenom}}
+                </a>
+                , {{$ctrl.element.artiste.pays}}
+            </p>
+            <p>
+                {{$ctrl.element.description ? $ctrl.element.description:"Aucune description"}}
+            </p>
+            <p class='bottom_div right_div align-right' style="margin-bottom: 20px;">
+                <span class='texte_moyen africa'>
+                    {{$ctrl.prixEtDevise($ctrl.element.prix)}}
+                </span>
+                <br>
+                <span style="display: inline-block; margin-bottom: 20px;">
+                    <a class="btn btn-lg btn-outline-secondary" style="cursor: pointer!important;">
+                        <i class="fas fa-shopping-cart"></i> 
+                        <span style="padding-left: 10px;">Ajouter au Panier</span>
+
+                    </a>
+                </span>
+            </p>
+            <p style="padding-top: 10px">
+
+            </p>
+        </div>
+    </div>
+</div>

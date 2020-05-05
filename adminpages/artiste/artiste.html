@@ -1,0 +1,147 @@
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ENEDIART</title>
+        <style>
+            .box_muanza{
+                border : 0px solid rgba(20,20,20, 0.5); 
+                display: none;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+            .color_muanza{
+                color : rgba(190,190,190, 1); 
+            }
+
+            #nom_utilisateur{
+                color : rgba(190,190,190, 1) !important;
+            }
+
+            .hauteur{
+                height: 45vh;
+                max-height: 50vw;
+            }
+
+            .tr:hover{
+                background-color: #ddd;
+            }
+            .miniature img:hover{
+                transform: scale(0.95);
+            }
+
+            .supprimer:hover{
+                color:#000!important;
+            }
+
+            .nom_artiste:hover{
+                font-weight: bold;
+            }
+
+        </style>
+
+    </head>
+    <body style="background-color: #fff">
+        <div ng-controller="ArtisteAdminController as controller">
+            <div ng-style="{'background-image':'url('+controller.backgroundImage+')'}" style="background-position: center center; background-size: 150% auto; width: 100%; height: 25vmin;">
+
+            </div>
+            <div class="" style="width: 100%; height: 25vmin; background-color: rgba(0,0,0,0.7); padding: 5vmin; margin-top: -25vmin">
+                <h1 class="africa display-3" style="color: #fdfdfd">
+                    Administration
+                </h1>
+            </div>
+            <div style="width: 100%;">
+                <div class="row">
+                    <div class="col-12" style="border-right: 0px solid #eee; padding: 2vmin 5vmin; padding-left: 7vmin">
+                        <h1 class="africa">
+                            {{controller.artiste.nom ? controller.artiste.nom:"Nouvel artiste"}}
+                            {{controller.artiste.prenom}},
+                            <span style="color:#444">
+                                {{controller.artiste.pays ? controller.artiste.pays : "Aucun pays"}}
+                            </span>
+
+                        </h1>
+                        {{controller.artiste.photo}}
+                        <div>
+                            <a class="text-info" style="font-size: 1.5em" href="#!/administration/artistes">Revenir aux artistes</a>
+                        </div>
+                        <div class="row" style="margin-top: 20px; margin-bottom: 0px;">
+                            <div class="col-5">
+                                <div class="circle">
+                                    <img id="logo_competition" class="circle" alt="" ng-src="{{controller.artiste.photo ? controller.artiste.photo:'resources/img/logoblanc.png'}}" style="width: 100%"/>
+                                </div>
+                                <div style="margin-top: 20px; margin-bottom: 10px" class="custom-file">
+                                    <input id="input_photo" type="file" accept="image/x-png" class="custom-file-input">
+                                    <label class="custom-file-label" for="inputGroupFile01">Choisir le fichier</label>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <form>
+                                    <div class="form-group">
+                                        <label>Noms</label>
+                                        <input ng-model="controller.artiste.nom" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Prénoms</label>
+                                        <input ng-model="controller.artiste.prenom" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pays</label>
+                                        <input ng-model="controller.artiste.pays" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Notation</label>
+                                        <input ng-model="controller.artiste.notation" type="number" class="form-control">
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-10">
+                                <button ng-click="controller.enregistrer(controller.artiste)" class="btn btn-primary btn-lg btn-block">
+                                    Modifier les informations
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div ng-if="controller.artiste.nom" class="col-10">
+                                <button ng-click="controller.supprimer(controller.artiste)" class="btn btn-danger btn-lg btn-block">
+                                    Supprimer l'artiste
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+
+            $(document).ready(function () {
+
+                window.scrollTo(0, 0);
+
+                $("nav").css("background-color", "#333");
+                $("#basdepage").css("padding-top", "60px");
+                console.log("basde page : " + $("#basdepage").css("padding-top"));
+
+                console.log("accounting");
+
+                console.log("La page oeuvre a été chargée");
+                var nboeuvres = Math.floor(Math.random() * 14) + 1;
+                console.log("nboeuvres" + nboeuvres);
+                $('#hautdepage').hide(500, function () {
+                    //afficherLesBlocAvecElegance(0, nboeuvres);
+                });
+
+
+            });
+        </script>
+    </body> 
+</html>
+

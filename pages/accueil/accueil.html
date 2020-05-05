@@ -1,0 +1,314 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>ENEDIART</title>
+        <style>
+            .box_muanza{
+                border : 0px solid gray; 
+
+            }
+            .color_muanza{
+                color : gray; 
+            }
+
+            #accueil{
+                color : rgba(190,190,190, 1) !important;
+            }
+        </style>
+        <style>
+            @media only screen and (max-width: 768px) {
+                .lead {
+                    font-size: 1.3em
+                }
+            }
+
+            @media only screen and (max-width: 320px) {
+                p.lead {
+                    font-size: 4.3em;
+                }
+            }
+
+            .padding_newsLetter {
+                padding: 10vmin; 
+                padding-left: 20vmin; 
+                padding-right: 20vmin;
+            }
+
+            .text_newsLetter {
+                font-size: 1.8em;
+            }
+
+            .titre_newsLetter {
+                font-size: 4.2em! important
+            }
+
+            .padding_input_newsLetter {
+                padding-left: 20vmin; 
+                padding-right: 20vmin; 
+                padding-top: 30px;
+            }
+
+            @media only screen and (max-width: 500px) {
+                .padding_newsLetter {
+                    padding: 0;
+                }
+                .text_newsLetter {
+                    font-size: 1.2em;
+                }
+                .titre_newsLetter {
+                    font-size: 2.2em! important
+                }
+
+                .padding_input_newsLetter {
+                    padding-left: 2vmin; 
+                    padding-right: 2vmin; 
+                    padding-top: 10px;
+                }
+            }
+        </style>
+    </head>
+    <body >
+        <div id="hautdepage" >
+            <div class="" style="border-bottom: 0px solid #333; height: 70vmin; color:#fff; background-color: #000; overflow: hidden">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" style="cursor: pointer" onclick="window.location.href = '#!oeuvres'">
+                        <div class="carousel-item active">
+                            <div style="filter: blur(0px); width: 100%; height: 70vmin; background-attachment: fixed;background-size: cover ;  background-image: url('https://firebasestorage.googleapis.com/v0/b/coworking-muanza.appspot.com/o/1.jfif?alt=media&token=88af0b2b-64a2-4066-b9bd-0cb652b990a7')">
+
+                            </div>
+                            <div style="padding: 2vw ; padding-left: 3vw ; position: absolute; margin-top: -70vmin;width: 100%; height: 70vmin; background-color: rgba(0, 0, 0, 0.5);">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 style="padding-left: 15vw; padding-right: 15vw; padding-top: 10vmin; color:#fff; text-align: center">
+                                            <span class="manuscrit">
+                                                L'Afrique en vue d'Artistes
+                                            </span>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item ">
+                            <div style="filter: blur(0px); width: 100%; height: 70vmin; background-attachment: fixed;background-size: cover ;  background-image: url('https://firebasestorage.googleapis.com/v0/b/coworking-muanza.appspot.com/o/2.jfif?alt=media&token=88af0b2b-64a2-4066-b9bd-0cb652b990a7')">
+
+                            </div>
+                            <div style="padding: 2vw ; padding-left: 3vw ; position: absolute; margin-top: -70vmin;width: 100%; height: 70vmin; background-color: rgba(0, 0, 0, 0.5);">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 style="padding-left: 15vw; padding-right: 15vw; padding-top: 10vmin; color:#fff; text-align: center">
+                                            <span class="manuscrit">
+                                                L'Afrique en vue d'Artistes
+                                            </span>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item ">
+                            <div style="filter: blur(0px); width: 100%; height: 70vmin; background-attachment: fixed;background-size: cover ;  background-image: url('https://firebasestorage.googleapis.com/v0/b/coworking-muanza.appspot.com/o/3.jfif?alt=media&token=88af0b2b-64a2-4066-b9bd-0cb652b990a7')">
+
+                            </div>
+                            <div style="padding: 2vw ; padding-left: 3vw ; position: absolute; margin-top: -70vmin;width: 100%; height: 70vmin; background-color: rgba(0, 0, 0, 0.5);">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4 style="padding-left: 15vw; padding-right: 15vw; padding-top: 10vmin; color:#fff; text-align: center">
+                                            <span class="manuscrit">
+                                                L'Afrique en vue d'Artistes 
+                                            </span>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+        <div ng-controller="AccueilController as controller" style="min-height: 100vh;  width: 100% ; background-color: #fff; margin-top: 0vmin">
+            <div style="background-color: #fff; min-height: 80vh; width: 100%; " class="">
+                <div style="padding-bottom: 40px; ">
+                    <div class="contenu" style="padding-top: 40px;">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h1 class="display-4 africa" style="padding-right: 0px; text-align: center">
+                                    Nous vous recommandons ces oeuvres
+                                </h1>
+                                <div class="lead" style="text-align: center"> 
+                                    Cliquez sur l'oeuvre pour obtenir plus de détails
+                                </div>
+                            </div>
+                        </div>
+                        <div style=" padding: 10px; padding-top: 20px;">
+                            <div class="row">
+                                <div ng-repeat="oeu in controller.oeuvres track by $index" ng-class="{'col-sm-8': $index == 0 || $index == 3  , 'col-sm-4': $index == 1 || $index == 2  }" style="padding: 10px;">
+                                    <oeuvre element="oeu"></oeuvre>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding-top: 10px; text-align: center">
+                            <span onclick="window.location.href = '#!/oeuvres'" class="manuscrit-nopadding desssus" style="font-size: 1.8em; cursor: pointer">
+                                Voir plus d'oeuvres artistiques
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="filter: blur(0px); width: 100%; height: 110vh; background-attachment: fixed;background-size: cover ;  background-image: url('https://firebasestorage.googleapis.com/v0/b/coworking-muanza.appspot.com/o/21.jfif?alt=media&token=88af0b2b-64a2-4066-b9bd-0cb652b990a7')">
+
+            </div>
+
+
+            <div class="contenu" style="padding-top: 40px;">
+                <div style="padding-top: 0px;">
+                    <h1 class="display-4 africa" style="text-align: center">Artistes les plus en vue</h1>
+                    <p class="lead" style="text-align: center"> 
+                        Découvrez les artistes qui attirent le plus la clientèle
+                    </p>
+
+                </div>
+                <div style=" padding: 10px;">
+                    <div id="les_artistes" class="row" style="padding-top: 0px;">
+                        <div ng-repeat="art in controller.artistes" class="col-sm-4" style="padding: 10px;">
+                            <div ng-click="controller.ouvrirArtiste(art)" class="box_muanza circle h50" style="background-size: cover;" ng-style="{'background-image':'url('+art.photo+')'}" >
+
+                            </div>
+                            <p style="text-align: center; font-size: 1.2em; padding-top: 5px;">
+                                <b>{{art.nom}}</b>, {{art.pays}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding-top: 0px; text-align: center">
+                    <span onclick="window.location.href = '#!/artistes'" class="manuscrit-nopadding desssus" style="font-size: 1.8em; cursor: pointer">
+                        Découvrir plus d'artistes créateurs
+                    </span>
+                </div>
+            </div>
+            <div style="height: 100px">
+                <div class="row">
+                    <div class="col-sm-4">
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div>
+                <div ng-if="controller.expositions[0]" id="div_biblio" ng-style="{'background-image':'url('+controller.expositions[0].photo+')'}" style="border-bottom: 2px solid #222 ;min-height: 60vh; background-attachment: fixed; background-size: cover">
+                    <div class="contenu" style="padding-top: 7vmin; padding-bottom: 5vmin ; min-height: 60vh; background-color: rgba(0, 0, 0, 0.8);">
+
+                        <div class="row" style="padding-top: 0px; color: #fafafa">
+                            <div class="col-sm-6" style="margin-bottom: 20px;">
+                                <div style="border-radius: 0px ; border: 10px solid #eee ; min-height: 0vh; max-height: 60vh; overflow : hidden">
+                                    <img ng-click="controller.ouvrir(controller.expositions[0])" style="width: 100%; cursor: pointer" ng-src="{{controller.expositions[0].photo}}" alt=""/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="margin-bottom: 40px;">
+                                <h1 class="africa">
+                                    {{controller.expositions[0].nom}}
+
+                                </h1>
+                                <p class="lead" style="margin-top: -10px;">
+                                    {{controller.expositions[0].lieu}},
+                                    {{controller.expositions[0].pays}}
+                                </p>
+                                <p class="lead capitalize africa" style="margin-top: -10px;">
+                                    {{controller.expositions[0].dateDebut}},
+                                    {{controller.expositions[0].dateFin}}
+                                </p>
+
+                                <div style="padding-top: 0px;">
+                                    <span onclick="window.location.href = '#!/expositions'" class="manuscrit-nopadding desssus" style="font-size: 1.8em; cursor: pointer">
+                                        Découvrir plus d'expositions
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-controller="NewsLetterController as controller" style="background-color: #fff; width: 100%; background-attachment: fixed;background-size: 100% auto ;  ackground-image: url('https://firebasestorage.googleapis.com/v0/b/coworking-muanza.appspot.com/o/27.jfif?alt=media&token=88af0b2b-64a2-4066-b9bd-0cb652b990a7')">
+                <div class="padding_newsLetter" style="">
+                    <div style="border-radius: 0px; padding-bottom:7vmin; background-color: rgba(68, 185, 25, 0.9); border: 0px solid white">
+                        <div style="text-align: center; padding: 5vmin">
+                            <h1 class="africa text-white titre_newsLetter" style="">
+                                S'inscrire à notre newsletter
+                            </h1>
+                            <p class="text_newsLetter" style="color:#fefefe; padding-left: 10vmin; padding-right: 10vmin">
+                                Nous vous enverrons régulièrement les nouveautés, les principales actualités sur les artistes et la scène artistique africaine.
+                            </p>
+                            <div class="padding_input_newsLetter">
+                                <div class="input-group input-group-lg">
+                                    <input ng-model="email" style="text-align: center;" type="email" class="form-control africa" placeholder="Email">
+                                    <div class="input-group-append">
+                                        <button ng-click="controller.ajouterMail(email)" class="btn btn-outline-light" style="">S'inscrire</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+
+            function montrerInfos(element) {
+            console.log("Vous êtes dessus !");
+            var div = element.childNodes;
+            console.log(div)
+                    div[1].style.display = "block";
+            }
+            function cacherInfos(element) {
+            console.log("Vous êtes sorti !");
+            var div = element.childNodes;
+            console.log(div)
+                    div[1].style.display = "none";
+            }
+
+            $(document).ready(function () {
+
+
+            console.log("Muanza");
+            console.log($('.box_muanza'));
+            $('.box_muanza').on('mouseenter', function () {
+            console.log("Vous êtes dessus !");
+            $(this).find("div").css("display", "block");
+            })
+
+                    $('.box_muanza').on('mouseleave', function () {
+            //console.log("Vous êtes dessus !");
+            $(this).find("div").css("display", "none");
+            })
+//            console.log("Accueil ready  !!");
+//            var largeur = $(".col-sm-4").first().width();
+//            $("#les_artistes").height(largeur)
+//            
+//            console.log("largeur = " + largeur);
+                    console.log("La page oeuvre a été chargée");
+            $("nav").css("background-color", "#333");
+            $("#basdepage").css("padding-top", "60px");
+            console.log("basde page : " + $("#basdepage").css("padding-top"));
+            })
+        </script>
+    </body> 
+</html>
+

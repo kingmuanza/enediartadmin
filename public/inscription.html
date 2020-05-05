@@ -1,0 +1,176 @@
+<html>
+    <head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
+
+        <title>ENEDIART</title>
+        <style>
+            .flou{
+                filter : blur(5px);
+            }
+            #muanza {
+                transform: rotate(0deg);
+            }
+            .recherche_input{
+                border: none!important;
+                background: none!important;
+                font-size: 1.5em;
+                border-bottom: 1px solid #777!important;
+                width: 95%;
+                color:white;
+            }
+        </style>
+
+    </head>
+
+    <body style="width: 100vw; height: 100vh; overflow: hidden; background-size: cover; background-image: url('ttps://firebasestorage.googleapis.com/v0/b/coworking-muanza.appspot.com/o/3.jfif?alt=media&token=88af0b2b-64a2-4066-b9bd-0cb652b990a7')">
+        <div style="width: 110vw; height: 100vh; background-color: rgba(0,0,0,0.95)">
+            <div class="row">
+                <div class="col-4" style="border-right: 1px solid #222;  background-color: rgba(0,0,0,1);height: 100vh;padding-top: 10vmin">
+                    <img style="width: 100%" src="https://firebasestorage.googleapis.com/v0/b/coworking-muanza.appspot.com/o/logonb.PNG?alt=media&token=815b7364-7dc7-45f1-8791-617274612a91">
+
+                </div>
+                <div class="col-6" style="padding-top: 15vmin">
+                    <div class="row">
+                        <div class="col-3">
+
+                        </div>
+                        <div class="col-8">
+                            <h1 id="titre_page" class="display-4 africa" style="color: #fff; cursor: pointer!important;">
+                                <b>Inscription</b>
+                            </h1>
+                            <p class="lead" style="color: #fcfcfc;margin-top: -10px; margin-bottom: 20px;"> 
+                                Veuillez remplir le formulaire
+                            </p>
+                            <form action="index.html" method="get">
+                                <div class="form-group">
+                                    <input type="text" name="nom" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nom">
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="prenom" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Prénom">
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="login" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+
+                                </div>
+                                <div class="form-group">
+                                    <input name="passe" type="password" class="form-control" placeholder="Mot de passe">
+                                </div>
+                                <div class="form-group">
+                                    <input name="confirmpasse" type="password" class="form-control" placeholder="Confirmer mot de passe">
+                                </div>
+                                <button id="inscription" type="submit" class="btn btn-warning">S'enregistrer</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.1.0.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyA6BzmVk6TAmQka4-sZVsHmc94ZSXmMRZU",
+                authDomain: "coworking-muanza.firebaseapp.com",
+                databaseURL: "https://coworking-muanza.firebaseio.com",
+                projectId: "coworking-muanza",
+                storageBucket: "coworking-muanza.appspot.com",
+                messagingSenderId: "38968912248"
+            };
+            firebase.initializeApp(config);
+
+
+            function inscription(nom, email, password) {
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                        .then(function (e) {
+                            console.log("e");
+                            console.log(e);
+                            var user = firebase.auth().currentUser;
+                            user.updateProfile({
+                                displayName: nom,
+                                photoURL: ""
+                            }).then(function () {
+                                console.log("user");
+                                console.log(user);
+                                firebase.database().ref('enediart/utilisateurs/' + user.uid).set(
+                                        {
+                                            displayName: nom,
+                                            email: email,
+                                            tel: ""
+                                        },
+                                        function (element) {
+                                            console.log("element")
+                                            console.log(element)
+
+
+                                            sendMail(email);
+                                        });
+
+                            }).catch(function (error) {
+                                // An error happened.
+                            });
+
+                        })
+                        .catch(function (error) {
+                            // Handle Errors here.
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            console.error(error);
+                        });
+            }
+
+            function sendMail(email) {
+                Email.send({
+                    Host: "smtp.gmail.com",
+                    Username: "florentolivier41@gmail.com",
+                    Password: "invincible237",
+                    To: email,
+                    From: "florentolivier41@gmail.com",
+                    Subject: "Inscription",
+                    Body: "Merci de votre confiance"
+                }).then(
+                        message => console.log(message)
+                );
+            }
+        </script>
+        <script>
+
+            $(document).ready(function () {
+                $('#inscription').on("click", function (e) {
+                    e.preventDefault();
+                    var login = $("input[name$='login']").val();
+                    console.log("login : " + login);
+                    var passe = $("input[name$='passe']").val();
+                    console.log("passe : " + passe);
+                    var confirmpasse = $("input[name$='confirmpasse']").val();
+                    console.log("confirmpasse : " + confirmpasse);
+                    var nom = $("input[name$='nom']").val();
+                    console.log("nom : " + nom);
+                    var prenom = $("input[name$='prenom']").val();
+                    console.log("prenom : " + prenom);
+                    if (passe) {
+                        if (passe === confirmpasse) {
+                            inscription(nom + " " + prenom, login, passe);
+                        } else {
+                            alert("Les mots de passe ne sont pas identiques !")
+                        }
+                    } else {
+                        console.log("Ya pas de mot de passe");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
